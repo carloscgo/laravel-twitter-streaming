@@ -1,10 +1,10 @@
 # Easily work with the Twitter Streaming API in a Laravel app
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-twitter-streaming-api)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/carloscgo/laravel-twitter-streaming.svg?style=flat-square)](https://packagist.org/packages/carloscgo/laravel-twitter-streaming)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-twitter-streaming-api/master.svg?style=flat-square)](https://travis-ci.org/carloscgo/laravel-twitter-streaming-api)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-twitter-streaming-api)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://packagist.org/packages/carloscgo/laravel-twitter-streaming-api)
+[![Build Status](https://img.shields.io/travis/carloscgo/laravel-twitter-streaming/master.svg?style=flat-square)](https://travis-ci.org/carloscgo/laravel-twitter-streaming)
+[![Quality Score](https://img.shields.io/scrutinizer/g/carloscgo/laravel-twitter-streaming.svg?style=flat-square)](https://scrutinizer-ci.com/g/carloscgo/laravel-twitter-streaming)
+[![Total Downloads](https://img.shields.io/packagist/dt/carloscgo/laravel-twitter-streaming.svg?style=flat-square)](https://packagist.org/packages/carloscgo/laravel-twitter-streaming)
 
 Twitter provides a streaming API with which you can do interesting things such as listening for tweets that contain specific strings or actions a user might take (e.g. liking a tweet, following someone,...). This package makes it very easy to work with the API.
 
