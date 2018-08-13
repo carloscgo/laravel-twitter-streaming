@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\LaravelTwitterStreamingApi\Test;
+namespace CarlosCGO\LaravelTwitterStreaming\Test;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiFacade;
-use Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider;
+use CarlosCGO\LaravelTwitterStreaming\TwitterStreamingFacade;
+use CarlosCGO\LaravelTwitterStreaming\TwitterStreamingServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -16,7 +16,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            TwitterStreamingApiServiceProvider::class,
+            TwitterStreamingServiceProvider::class,
         ];
     }
 
@@ -25,18 +25,16 @@ abstract class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('laravel-twitter-streaming-api', [
-            'access_token' => 'my_access_token',
-            'access_token_secret' => 'my_access_token_secret',
-            'consumer_key' => 'my_consumer_key',
-            'consumer_secret' => 'my_consumer_secret',
+        $app['config']->set('laravel-twitter-streaming-', [
+            'table' => 'my_table',
+            'where_field_business' => 'business_id',
         ]);
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'TwitterStreamingApi' => TwitterStreamingApiFacade::class,
+            'TwitterStreaming' => TwitterStreamingFacade::class,
         ];
     }
 }

@@ -1,22 +1,22 @@
 <?php
 
-namespace Spatie\LaravelTwitterStreamingApi\Test;
+namespace CarlosCGO\LaravelTwitterStreaming\Test;
 
-use TwitterStreamingApi;
-use Spatie\TwitterStreamingApi\UserStream;
-use Spatie\TwitterStreamingApi\PublicStream;
+use TwitterStreaming;
+use CarlosCGO\TwitterStreaming\UserStream;
+use CarlosCGO\TwitterStreaming\PublicStream;
 
 class FacadeTest extends TestCase
 {
     /** @test */
     public function it_can_return_a_public_stream()
     {
-        $this->assertInstanceOf(PublicStream::class, TwitterStreamingApi::publicStream());
+        $this->assertInstanceOf(PublicStream::class, TwitterStreaming::publicStream());
     }
 
     /** @test */
     public function it_can_return_a_user_stream()
     {
-        $this->assertInstanceOf(UserStream::class, TwitterStreamingApi::userStream());
+        $this->assertInstanceOf(UserStream::class, TwitterStreaming::userStream());
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
-namespace Spatie\LaravelTwitterStreamingApi;
+namespace CarlosCGO\LaravelTwitterStreaming;
 
-use Spatie\TwitterStreamingApi\UserStream;
+use CarlosCGO\TwitterStreaming\UserStream;
+use CarlosCGO\TwitterStreaming\PublicStream;
 use Illuminate\Contracts\Config\Repository;
-use Spatie\TwitterStreamingApi\PublicStream;
 use Illuminate\Support\Facades\DB;
 
-class TwitterStreamingApi
+class TwitterStreaming
 {
     /** @var array */
     protected $config;
 
     public function __construct(Repository $config)
     {
-        $this->config = $config['laravel-twitter-streaming-api'];
+        $this->config = $config['laravel-twitter-streaming'];
     }
 
     private function getConfig($business_id)

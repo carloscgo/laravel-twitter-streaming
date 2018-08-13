@@ -63,13 +63,10 @@ return [
      * If you don't have credentials yet, head over to https://apps.twitter.com/
      */
 
-    'access_token' => env('TWITTER_ACCESS_TOKEN'),
+    'table' => env('TWITTER_CONFIG_TABLE'),
 
-    'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
+    'where_field_business' => env('TWITTER_FIELD_BUSINESS'),
 
-    'consumer_key' => env('TWITTER_CONSUMER_KEY'),
-
-    'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 ];
 ```
 

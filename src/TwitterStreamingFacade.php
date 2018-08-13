@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\LaravelTwitterStreamingApi;
+namespace CarlosCGO\LaravelTwitterStreaming;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Spatie\LaravelTwitterStreamingApi\LaravelTwitterStreamingApiClass
+ * @see \CarlosCGO\LaravelTwitterStreaming\LaravelTwitterStreamingClass
  */
 class TwitterStreamingApiFacade extends Facade
 {
@@ -16,6 +16,6 @@ class TwitterStreamingApiFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-twitter-streaming-api';
+        return 'laravel-twitter-streaming';
     }
 }
