@@ -2,16 +2,14 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-twitter-streaming-api)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-twitter-streaming-api/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-twitter-streaming-api)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/32372440-dd8f-41c0-9a2e-9d3936b94df0.svg?style=flat-square)](https://insight.sensiolabs.com/projects/32372440-dd8f-41c0-9a2e-9d3936b94df0)
+[![Build Status](https://img.shields.io/travis/spatie/laravel-twitter-streaming-api/master.svg?style=flat-square)](https://travis-ci.org/carloscgo/laravel-twitter-streaming-api)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-twitter-streaming-api)
-[![StyleCI](https://styleci.io/repos/78793113/shield?branch=master)](https://styleci.io/repos/78793113)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-twitter-streaming-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-twitter-streaming-api.svg?style=flat-square)](https://packagist.org/packages/carloscgo/laravel-twitter-streaming-api)
 
 Twitter provides a streaming API with which you can do interesting things such as listening for tweets that contain specific strings or actions a user might take (e.g. liking a tweet, following someone,...). This package makes it very easy to work with the API.
 
 ```php
-TwitterStreamingApi::publicStream()
+TwitterStreamingApi::publicStream($business_id)
 ->whenHears('#laravel', function(array $tweet) {
     echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
 })
@@ -25,7 +23,7 @@ Here's [an example Laravel application](https://github.com/spatie/laravel-twitte
 You can install the package via composer:
 
 ``` bash
-composer require spatie/laravel-twitter-streaming-api
+composer require carloscgo/laravel-twitter-streaming-api
 ```
 
 You must install this service provider.
@@ -34,7 +32,7 @@ You must install this service provider.
 // config/app.php
 'providers' => [
     ...
-    Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider::class,
+    CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider::class,
 ];
 ```
 
@@ -44,14 +42,14 @@ This package also comes with a facade, which provides an easy way to call the cl
 // config/app.php
 'aliases' => [
     ...
-    'TwitterStreamingApi' => Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiFacade::class,
+    'TwitterStreamingApi' => CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiFacade::class,
 ];
 ```
 
 The config file must be published with this command:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider" --tag="config"
+php artisan vendor:publish --provider="CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider" --tag="config"
 ```
 
 It will be published in `config/laravel-twitter-streaming-api.php`
@@ -81,7 +79,7 @@ In order to use this package you'll need to get some credentials from Twitter. H
 
 Once you've created your application, click on the `Keys and access tokens` tab to retrieve your `consumer_key`, `consumer_secret`, `access_token` and `access_token_secret`.
 
-![Keys and access tokens tab on Twitter](https://spatie.github.io/twitter-streaming-api/images/twitter.jpg)
+![Keys and access tokens tab on Twitter](https://carloscgo.github.io/twitter-streaming-api/images/twitter.jpg)
 
 ## Usage
 
@@ -90,7 +88,7 @@ Currently, this package works with the public stream and the user stream. Both t
 In the example below a facade is used. If you don't like facades you can replace them with
 
 ```php
-app(Spatie\LaravelTwitterStreamingApi\TwitterStreamingApi::class)
+app(CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApi::class)
 ```
 
 ### The public stream
@@ -102,7 +100,7 @@ The first parameter of `whenHears` must be a string or an array containing the w
 ```php
 use TwitterStreamingApi;
 
-TwitterStreamingApi::publicStream()
+TwitterStreamingApi::publicStream($business_id)
 ->whenHears('#laravel', function(array $tweet) {
     echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
 })
@@ -114,7 +112,7 @@ TwitterStreamingApi::publicStream()
 ```php
 use TwitterStreamingApi;
 
-TwitterStreamingApi::userStream()
+TwitterStreamingApi::userStream($business_id)
 ->onEvent(function(array $event) {
     if ($event['event'] === 'favorite') {
         echo "Our tweet {$event['target_object']['text']} got favorited by {$event['source']['screen_name']}";
@@ -147,30 +145,6 @@ $ composer test
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security
-
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
-
-## Postcardware
-
-You're free to use this package, but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
-
-Our address is: Spatie, Samberstraat 69D, 2060 Antwerp, Belgium.
-
-We publish all received postcards [on our company website](https://spatie.be/en/opensource/postcards).
-
-## Credits
-
-- [Freek Van der Herten](https://github.com/freekmurze)
-- [All Contributors](../../contributors)
-
-## Support us
-
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
-
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
-All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
 
