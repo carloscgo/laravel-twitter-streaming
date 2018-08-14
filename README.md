@@ -9,7 +9,7 @@
 Twitter provides a streaming API with which you can do interesting things such as listening for tweets that contain specific strings or actions a user might take (e.g. liking a tweet, following someone,...). This package makes it very easy to work with the API.
 
 ```php
-TwitterStreamingApi::publicStream($business_id)
+TwitterStreaming::publicStream($business_id)
 ->whenHears('#laravel', function(array $tweet) {
     echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
 })
@@ -23,7 +23,7 @@ Here's [an example Laravel application](https://github.com/spatie/laravel-twitte
 You can install the package via composer:
 
 ``` bash
-composer require carloscgo/laravel-twitter-streaming-api
+composer require carloscgo/laravel-twitter-streaming
 ```
 
 You must install this service provider.
@@ -32,7 +32,7 @@ You must install this service provider.
 // config/app.php
 'providers' => [
     ...
-    CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider::class,
+    CarlosCGO\LaravelTwitterStreaming\TwitterStreamingServiceProvider::class,
 ];
 ```
 
@@ -42,17 +42,17 @@ This package also comes with a facade, which provides an easy way to call the cl
 // config/app.php
 'aliases' => [
     ...
-    'TwitterStreamingApi' => CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiFacade::class,
+    'TwitterStreaming' => CarlosCGO\LaravelTwitterStreaming\TwitterStreamingFacade::class,
 ];
 ```
 
 The config file must be published with this command:
 
 ```bash
-php artisan vendor:publish --provider="CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider" --tag="config"
+php artisan vendor:publish --provider="CarlosCGO\LaravelTwitterStreaming\TwitterStreamingServiceProvider" --tag="config"
 ```
 
-It will be published in `config/laravel-twitter-streaming-api.php`
+It will be published in `config/laravel-twitter-streaming.php`
 
 ```php
 return [
@@ -76,7 +76,7 @@ In order to use this package you'll need to get some credentials from Twitter. H
 
 Once you've created your application, click on the `Keys and access tokens` tab to retrieve your `consumer_key`, `consumer_secret`, `access_token` and `access_token_secret`.
 
-![Keys and access tokens tab on Twitter](https://carloscgo.github.io/twitter-streaming-api/images/twitter.jpg)
+![Keys and access tokens tab on Twitter](https://carloscgo.github.io/twitter-streaming/images/twitter.jpg)
 
 ## Usage
 
@@ -85,7 +85,7 @@ Currently, this package works with the public stream and the user stream. Both t
 In the example below a facade is used. If you don't like facades you can replace them with
 
 ```php
-app(CarlosCGO\LaravelTwitterStreamingApi\TwitterStreamingApi::class)
+app(CarlosCGO\LaravelTwitterStreaming\TwitterStreaming::class)
 ```
 
 ### The public stream
@@ -95,9 +95,9 @@ The public stream can be used to listen for specific words that are being tweete
 The first parameter of `whenHears` must be a string or an array containing the word or words you want to listen for. The second parameter should be a callable that will be executed when one of your words is used on Twitter.
 
 ```php
-use TwitterStreamingApi;
+use TwitterStreaming;
 
-TwitterStreamingApi::publicStream($business_id)
+TwitterStreaming::publicStream($business_id)
 ->whenHears('#laravel', function(array $tweet) {
     echo "{$tweet['user']['screen_name']} tweeted {$tweet['text']}";
 })
@@ -107,9 +107,9 @@ TwitterStreamingApi::publicStream($business_id)
 ### The user stream
 
 ```php
-use TwitterStreamingApi;
+use TwitterStreaming;
 
-TwitterStreamingApi::userStream($business_id)
+TwitterStreaming::userStream($business_id)
 ->onEvent(function(array $event) {
     if ($event['event'] === 'favorite') {
         echo "Our tweet {$event['target_object']['text']} got favorited by {$event['source']['screen_name']}";
